@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
+<head>
+ <meta charset="UTF-8">
+<link rel="stylesheet" href="../style.css">
+<title>Travaux – Lucillien Tavernier</title>
+</head>
 <body>
-	<nav>
+		<nav class="menu">
 		<ul>
 			<li><a href="../index.html">accueil</a></li>
 			<li><a href= "travail.html">travail</a></li>
@@ -13,33 +18,90 @@
 		</ul>
 	</nav>
   <main>
-	<h1>page travail</h1>
-	
- <figure>
- 	</p><img src="../travaux/projet/xsylogravure/gravure1.jpg" alt="gravure 1" title="gravure 1" width="1000">
-  <figcaption>Xylogravure de foret 1 acrylic, papier150g 64 cm x 90 cm, 2022 23 cm x 30 cm</figcaption>
-</figure>
-
-   <figure>
- 	</p><img src="../travaux/projet/xsylogravure/gravure.jpg" alt="gravure 2" title="gravure 2" width="1000">
-  <figcaption>Xylogravure de foret 2 acrylic, papier150g 64 cm x 90 cm, 2022 85 cm x 41 cm</figcaption>
-</figure>
-
- <figure>
- 	</p><img src="../travaux/projet/outil d'or/sciseau a bois.jpg" alt="sciseau a bois" title="sciseau a bois" width="1000">
-  <figcaption>Outils d’or, ciseau à bois Outil restauré, chêne, feuilles de laiton , 2022 3 cm x 28 cm x 3 cm DNSEP, isba 2024</figcaption>
-</figure>
-
-<figure>
- 	</p><img src="../travaux/projet/outil d'or/couteau et sciseau a bois.jpg" alt="couteau et sciseau a bois" title="couteau et sciseau a bois" width="1000">
-  <figcaption>Outils d’or, ciseau à bois et gouge Outil restauré, chêne, feuilles de laiton , 2022 8 cm x 30 cm x 3 cm</figcaption>
-</figure>
-   
-   
+  
+  <map class="gallery">
+			
  
-   
-   
-   
+	<img src="../travaux/projet/xsylogravure/gravure1.jpg" 
+		alt="gravure 1" 
+		data-full="../travaux/projet/xsylogravure/gravure1.jpg" 
+		data-description="Xylogravure de forêt 1, acrylique, papier 150g, 64 cm x 90 cm, 2022.">
+  
+	<img src="../travaux/projet/xsylogravure/gravure.jpg" 
+		alt="gravure" 
+		data-full="../travaux/projet/xsylogravure/gravure.jpg" 
+		data-description="Xylogravure de forêt 2, acrylique, papier 150g, 64 cm x 90 cm, 2022.">
+  
+	<img src="../travaux/projet/outil-d-or/sciseau.jpg" 
+		alt="outil d'or" 
+		data-full="../travaux/projet/outil-d-or/sciseau.jpg" 
+		data-description="Outil en or, ciseau à bois, restauré, chêne, feuilles de laiton, 2022.">
+  
+	<img src="../travaux/projet/outil-d-or/couteau-sciseau.jpg" 
+		alt="couteau et sciseau" 
+		data-full="../travaux/projet/outil-d-or/couteau-sciseau.jpg" 
+		data-description="Outils d’or, ciseau à bois et gouge, restauré, chêne, feuilles de laiton, 2022, 8 cm x 30 cm x 3 cm.">
+
+	<img src="../travaux/projet/caprice/cailloux1.jpg" 
+		alt="caprice minerais de bois" 
+		data-full="../travaux/projet/caprice/cailloux1.jpg" 
+		data-description="Caprices, minerais de bois 4, Chêne, roche, socle en béton, 2024, 20 cm x 25 cm x 20 cm">
+  
+	<img src="../travaux/projet/caprice/caprice dnsep.jpg" 
+		alt="caprice minerais de bois" 
+		data-full="../travaux/projet/caprice/caprice dnsep.jpg" 
+		data-description="Caprices, minerais de bois ,">
+  
+  
+  
+</map>
+
+  </div>
+  
+  
+  
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-description" id="lightbox-desc"></div>
+    </div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxDesc = document.getElementById('lightbox-desc');
+
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.dataset.full;
+        lightboxImg.alt = img.alt;
+        lightboxDesc.textContent = img.dataset.description;
+        lightbox.classList.add('active');
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      lightboxImg.src = '';
+      lightboxDesc.textContent = '';
+    }
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
+
+ 
  
   </main> 
   <footer>
@@ -47,3 +109,15 @@
   </footer>
 </body>
 </html>
+
+
+
+<!
+
+ Xylogravure de foret 1 acrylic, papier150g 64 cm x 90 cm, 2022 23 cm x 30 cm
+ Xylogravure de foret 2 acrylic, papier150g 64 cm x 90 cm, 2022 85 cm x 41 cm
+ Outils d’or, ciseau à bois Outil restauré, chêne, feuilles de laiton , 2022 3 cm x 28 cm x 3 cm DNSEP, isba 2024
+ Outils d’or, ciseau à bois et gouge Outil restauré, chêne, feuilles de laiton , 2022 8 cm x 30 cm x 3 cm
+ 
+ 
+ >
