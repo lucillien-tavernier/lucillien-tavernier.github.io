@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Travaux de Lucillien Tavernier : Caprice, Outils d'or, Xylogravure, Paysages céramiques, Peintures d'oxyde, et plus.">
+  <title>Travaux — Lucillien Tavernier</title>
+
+  <link rel="stylesheet" href="./css/fonts.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body data-page-id="travaux">
+
+  <a href="#main" class="skip-link">Aller au contenu principal</a>
+
+  <div data-include="nav"></div>
+
+  <main id="main" class="main">
+    <!--
+      Le contenu de la galerie est généré dynamiquement par js/gallery.js
+      à partir de data/works.json. Selon l'URL, on affiche soit la grille
+      des séries (par défaut), soit la vue détail d'une série (?serie=ID).
+    -->
+    <section class="section">
+      <div id="gallery">
+        <!-- Placeholder pendant le chargement -->
+        <p style="text-align:center; color:#a09e98">Chargement des œuvres…</p>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+
+  <script src="./js/partials.js"></script>
+  <!-- L'ordre compte : lightbox doit être disponible avant gallery,
+       car gallery appelle window.initLightbox() -->
+  <script src="./js/lightbox.js"></script>
+  <script src="./js/gallery.js"></script>
+</body>
+</html>

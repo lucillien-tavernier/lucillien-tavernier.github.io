@@ -1,0 +1,60 @@
+<!--
+  FOOTER GLOBAL
+  -------------
+  Affiché en bas de toutes les pages, chargé par js/partials.js.
+  Contient les infos de contact + le copyright.
+
+  Pour modifier les coordonnées de contact (téléphone, email, adresse,
+  Instagram), édite directement les href ci-dessous.
+-->
+<footer class="footer" id="contact">
+  <div class="footer__inner">
+
+    <h2 class="footer__title">Contact</h2>
+
+    <!-- Grille de contact :
+         - 1 colonne en mobile (verticale)
+         - 2 colonnes en desktop (équilibré, sur 2 lignes) -->
+    <ul class="footer__contact-list">
+      <li>
+        <a href="https://www.instagram.com/lucillien_tavernier_art/"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Compte Instagram de Lucillien Tavernier (nouvel onglet)">
+          <img src="./images/icons/instagram.svg" alt="" aria-hidden="true" width="24" height="24">
+          <span>@lucillien_tavernier_art</span>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:lesmainsdutavernier@gmail.com"
+           aria-label="Envoyer un email à lesmainsdutavernier@gmail.com">
+          <img src="./images/icons/mail.svg" alt="" aria-hidden="true" width="24" height="24">
+          <span>lesmainsdutavernier@gmail.com</span>
+        </a>
+      </li>
+      <li>
+        <a href="tel:+33778327886"
+           aria-label="Téléphoner au 07 78 32 78 86">
+          <img src="./images/icons/telephone.svg" alt="" aria-hidden="true" width="24" height="24">
+          <span>07 78 32 78 86</span>
+        </a>
+      </li>
+      <li>
+        <!--
+          Lien Maps direct vers la fiche Google "Ateliers Vauban - Association AVE"
+          (URL fournie par Lucillien, pose un marker précis sur le lieu).
+        -->
+        <a href="https://www.google.com/maps/place/Ateliers+Vauban+-+Association+AVE/@47.2401902,6.010013,17z/data=!3m1!4b1!4m6!3m5!1s0x478d6365c35fa80d:0x3b4b5f6a5323f2f6!8m2!3d47.2401902!4d6.010013!16s%2Fg%2F11gh9lbfx8"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Atelier — Ateliers Vauban, Besançon (Google Maps, nouvel onglet)">
+          <img src="./images/icons/adresse.svg" alt="" aria-hidden="true" width="24" height="24">
+          <span>Ateliers Vauban — Besançon</span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="footer__bottom">
+    <p>&copy; <span id="footer-year">2025</span> Lucillien Tavernier — Tous droits réservés.</p>
+  </div>
+</footer>

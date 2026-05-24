@@ -1,0 +1,42 @@
+{
+  "_comment": "EXPOSITIONS, RÉSIDENCES, PROGRAMMES. Chaque entrée a : title (obligatoire), year (obligatoire), type ('Exposition', 'Résidence', 'Programme', 'Lauréat', 'Festival', etc.), location (lieu), city (ville), description (optionnelle), url (lien externe optionnel). À ranger du plus récent au plus ancien — le regroupement par année est automatique côté JS.",
+
+  "items": [
+    {
+      "year": "2026",
+      "type": "Lauréat",
+      "title": "PRO PULSE",
+      "location": "Soutien à la professionnalisation des jeunes artistes",
+      "city": "Bourgogne-Franche-Comté",
+      "description": "Accompagné par Marie Cantos et Pierre Soignon"
+    },
+    {
+      "year": "2025",
+      "type": "Exposition",
+      "title": "Nexus",
+      "location": "Ateliers Vauban",
+      "city": "Besançon"
+    },
+    {
+      "year": "2025",
+      "type": "Festival",
+      "title": "Back to the Trees",
+      "location": "Festival d'art contemporain en forêt — Bois d'Ambre",
+      "city": "Saint-Vit"
+    },
+    {
+      "year": "2024",
+      "type": "Exposition",
+      "title": "Astherisme",
+      "location": "Exposition des diplômés de l'ISBA",
+      "city": "Besançon"
+    },
+    {
+      "year": "2024",
+      "type": "Festival",
+      "title": "Back to the Trees",
+      "location": "Festival d'art contemporain en forêt — Bois d'Ambre",
+      "city": "Saint-Vit"
+    }
+  ]
+}

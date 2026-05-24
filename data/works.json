@@ -1,0 +1,557 @@
+{
+  "_comment": "FICHIER PRINCIPAL DES ŒUVRES. Pour ajouter une nouvelle œuvre, ajoute un objet dans le tableau 'works' de la série concernée. Pour une nouvelle série, ajoute un objet dans le tableau 'series'. Le champ 'text' (optionnel) permet d'attacher un texte long à une œuvre — il s'affiche à côté de l'image dans la lightbox. Voir README.md pour le détail des champs.",
+
+  "series": [
+    {
+      "id": "caprice",
+      "title": "Caprices — Minerais de bois",
+      "period": "2023-2024",
+      "description": "Sculptures où le bois et la roche se rencontrent, à mi-chemin entre minéral et végétal. Présentées en atelier, sur socle, ou disposées dans le paysage du Mont d'Or.",
+      "materials": ["chêne", "bois échauffé", "roche"],
+      "cover": "images/works/caprice/caprice-dnsep.jpg",
+      "works": [
+        {
+          "id": "minerais-de-bois-4",
+          "src": "images/works/caprice/cailloux-1.jpg",
+          "alt": "Sculpture en chêne et roche posée sur socle béton, vue de trois quarts — palette ocre et pourpre",
+          "title": "Caprices, Minerais de bois 4",
+          "year": "2024",
+          "materials": ["chêne", "roche"],
+          "dimensions": "20 × 25 × 20 cm",
+          "text": "Cette pièce condense la démarche de la série : un bloc de chêne fendu, dont la coupe révèle un cœur de roche pourpre. La rencontre n'est ni un assemblage ni un trompe-l'œil — c'est un dialogue silencieux entre deux matières que tout sépare, et que l'on apprend à voir comme parentes. Le geste est minimal : ouvrir, polir, présenter."
+        },
+        {
+          "id": "caprice-dnsep",
+          "src": "images/works/caprice/caprice-dnsep.jpg",
+          "alt": "Vue d'ensemble de plusieurs minerais de bois présentés lors du DNSEP",
+          "title": "Caprices, Minerais de bois",
+          "year": "2024",
+          "materials": ["chêne", "bois échauffé", "roche"],
+          "exhibition": "DNSEP, ISBA Besançon, 2024"
+        },
+        {
+          "id": "minerais-de-bois-2-mont-d-or",
+          "src": "images/works/caprice/caprice-paradis.jpg",
+          "alt": "Minerai de bois sur socle en bois d'aulne, posé au sommet du Mont d'Or, ciel d'orage",
+          "title": "Caprices, Minerais de bois 2",
+          "year": "2023",
+          "materials": ["bois échauffé", "roche", "socle en bois d'aulne"],
+          "dimensions": "50 × 40 × 60 cm",
+          "location": "Sommet du Mont d'Or, Longevilles-Mont-d'Or"
+        },
+        {
+          "id": "minerais-de-bois-2-prairie",
+          "src": "images/works/caprice/caprice-01.jpg",
+          "alt": "Minerai de bois sur socle, dans une prairie fleurie de pissenlits",
+          "title": "Caprices, Minerais de bois 2",
+          "year": "2023",
+          "materials": ["bois échauffé", "roche", "socle en bois d'aulne"],
+          "dimensions": "50 × 40 × 60 cm",
+          "location": "Longevilles-Mont-d'Or"
+        },
+        {
+          "id": "minerais-de-bois-1",
+          "src": "images/works/caprice/caprice-02.jpg",
+          "alt": "Sculpture allongée en bois échauffé et roche, vue d'ensemble",
+          "title": "Caprices, Minerais de bois 1",
+          "year": "2023",
+          "materials": ["bois échauffé", "roche"],
+          "dimensions": "20 × 40 × 25 cm"
+        },
+        {
+          "id": "inclusion",
+          "src": "images/works/caprice/cailloux-inclusion.jpg",
+          "alt": "Inclusion de bois dans une roche, comme un fossile",
+          "title": "Caprices, Inclusion",
+          "year": "2024",
+          "materials": ["bois", "roche"],
+          "dimensions": "21 × 25 × 9 cm"
+        },
+        {
+          "id": "caprice-03",
+          "src": "images/works/caprice/caprice-03.jpg",
+          "alt": "Minerai de bois — vue rapprochée",
+          "title": "Caprices, Minerais de bois",
+          "year": "2024",
+          "materials": ["chêne", "roche"]
+        },
+        {
+          "id": "cailloux-2",
+          "src": "images/works/caprice/cailloux-2.jpg",
+          "alt": "Minerai de bois — détail",
+          "title": "Caprices, Minerais de bois",
+          "year": "2024"
+        },
+        {
+          "id": "cailloux-3",
+          "src": "images/works/caprice/cailloux-3.jpg",
+          "alt": "Minerai de bois — détail",
+          "title": "Caprices, Minerais de bois",
+          "year": "2024"
+        },
+        {
+          "id": "cailloux-4",
+          "src": "images/works/caprice/cailloux-4.jpg",
+          "alt": "Minerai de bois — détail",
+          "title": "Caprices, Minerais de bois",
+          "year": "2024"
+        },
+        {
+          "id": "cailloux",
+          "src": "images/works/caprice/cailloux.jpg",
+          "alt": "Minerai de bois — vue d'ensemble",
+          "title": "Caprices, Minerais de bois",
+          "year": "2024"
+        },
+        {
+          "id": "expedition-1",
+          "src": "images/works/caprice/expedition-1.jpg",
+          "alt": "Vue d'expédition — installation des minerais de bois en milieu naturel",
+          "title": "Expédition",
+          "year": "2024"
+        },
+        {
+          "id": "expedition-2",
+          "src": "images/works/caprice/expedition-2.jpg",
+          "alt": "Vue d'expédition — installation des minerais de bois en milieu naturel",
+          "title": "Expédition",
+          "year": "2024"
+        },
+        {
+          "id": "expedition",
+          "src": "images/works/caprice/expedition.jpg",
+          "alt": "Vue d'expédition — installation des minerais de bois en milieu naturel",
+          "title": "Expédition",
+          "year": "2024"
+        }
+      ]
+    },
+
+    {
+      "id": "paysage-pierre-de-reve",
+      "title": "Caprices — Pierres de rêve",
+      "period": "2024",
+      "description": "Pendant céramique des Minerais de bois. Inspiré des « pierres de rêve » chinoises, ces panneaux assemblent le bois et le grès cuit au raku pour évoquer des paysages de montagnes.",
+      "materials": ["bois", "bois échauffé", "grès blanc émaillé (raku)"],
+      "cover": "images/works/paysage-pierre-de-reve/paysage-ceramique.jpg",
+      "works": [
+        {
+          "id": "pierre-de-reve-1",
+          "src": "images/works/paysage-pierre-de-reve/paysage-ceramique.jpg",
+          "alt": "Panneau de bois clair surmonté de céramiques sombres évoquant des montagnes, émaillé vert d'eau en bas",
+          "title": "Caprices, Pierre de rêve 1",
+          "year": "2024",
+          "materials": ["bois échauffé", "grès blanc émaillé (raku)"],
+          "dimensions": "27 × 31 cm",
+          "text": "Les « pierres de rêve » chinoises sont des marbres dont les motifs internes, révélés par la coupe, évoquent spontanément des paysages : montagnes, brumes, lacs. Cette pièce reprend ce vocabulaire à la croisée de la céramique et de la sculpture. Le bois fait fonction de ciel et de socle ; le grès brut, presque dur comme la pierre, dessine les reliefs."
+        },
+        {
+          "id": "pierre-de-reve-2",
+          "src": "images/works/paysage-pierre-de-reve/paysage-ceramique-1.jpg",
+          "alt": "Panneau de bois avec deux massifs montagneux en céramique noire de chaque côté",
+          "title": "Caprices, Pierre de rêve 2",
+          "year": "2024",
+          "materials": ["bois", "grès blanc émaillé (raku)"],
+          "dimensions": "32 × 29,5 cm"
+        },
+        {
+          "id": "pierre-de-reve-4",
+          "src": "images/works/paysage-pierre-de-reve/capture-2025-06.jpg",
+          "alt": "Long panneau panoramique de bois clair surmonté d'une chaîne de céramiques enfumées",
+          "title": "Caprices, Pierre de rêve 4",
+          "year": "2024",
+          "materials": ["bois", "grès blanc enfumée"],
+          "dimensions": "184 × 70 cm"
+        },
+        {
+          "id": "paysage-ceramique-2",
+          "src": "images/works/paysage-pierre-de-reve/paysage-ceramique-2.jpg",
+          "alt": "Paysage céramique — vue détail",
+          "title": "Caprices, Pierre de rêve",
+          "year": "2024",
+          "materials": ["bois", "grès blanc émaillé"]
+        },
+        {
+          "id": "reve-de-pierre",
+          "src": "images/works/paysage-pierre-de-reve/reve-de-pierre-2.jpg",
+          "alt": "Rêve de pierre — paysage évoqué par la matière brute",
+          "title": "Rêve de pierre",
+          "year": "2024"
+        }
+      ]
+    },
+
+    {
+      "id": "etude-de-cailloux",
+      "title": "Études",
+      "period": "2025",
+      "description": "Petites études comparées où les morceaux de bois échauffé sont confrontés à des pierres ramassées. Le rapprochement révèle des analogies de couleur, de veine, de texture.",
+      "materials": ["bois échauffé", "pierre", "loupe de bois"],
+      "cover": "images/works/etude-de-cailloux/etude.jpg",
+      "works": [
+        {
+          "id": "etude-cailloux-1",
+          "src": "images/works/etude-de-cailloux/etude-1.jpg",
+          "alt": "Bois échauffé et pierre allongés côte à côte sur fond clair, étude comparée",
+          "title": "Étude de cailloux 1",
+          "year": "2025",
+          "materials": ["bois échauffé", "pierre"],
+          "dimensions": "25 × 16 cm"
+        },
+        {
+          "id": "etude-cailloux-2",
+          "src": "images/works/etude-de-cailloux/etude-2.jpg",
+          "alt": "Petite pierre rouge et morceau de bois marqué de stries, étude comparée",
+          "title": "Étude de cailloux 2",
+          "year": "2025",
+          "materials": ["bois échauffé", "pierre"],
+          "dimensions": "6 × 5 cm"
+        },
+        {
+          "id": "etude-cailloux-3",
+          "src": "images/works/etude-de-cailloux/etude.jpg",
+          "alt": "Pierre brune et pierre grise côte à côte, étude des matières",
+          "title": "Étude de cailloux 3",
+          "year": "2025",
+          "materials": ["bois échauffé", "pierre"],
+          "dimensions": "8 × 10 cm"
+        }
+      ]
+    },
+
+    {
+      "id": "outil-d-or",
+      "title": "Outils d'or",
+      "period": "2022",
+      "description": "Restauration d'outils usés en bois et métal, sublimés par des feuilles de laiton. Les manches retrouvent une seconde vie, présentés comme des objets précieux sur coussin de velours.",
+      "materials": ["bois de chêne", "feuilles de laiton"],
+      "cover": "images/works/outil-d-or/couteau-sciseau.jpg",
+      "works": [
+        {
+          "id": "ciseau-bois-gouge",
+          "src": "images/works/outil-d-or/couteau-sciseau.jpg",
+          "alt": "Ciseau à bois et gouge dorés à la feuille de laiton, manches en chêne, sur fond clair",
+          "title": "Outils d'or, Ciseau à bois et Gouge",
+          "year": "2022",
+          "materials": ["bois de chêne", "feuilles de laiton"],
+          "technique": "outils restaurés",
+          "dimensions": "8 × 30 × 3 cm",
+          "text": "L'outil est, dans ma pratique, un prolongement du corps. Le restaurer, le dorer à la feuille, c'est lui rendre la dignité que l'usage avait fait disparaître. Le laiton ne cache pas l'outil : il accentue son volume, le présente comme un bijou de travail. La pièce demande au regardeur de regarder l'instrument comme on regarderait un reliquaire."
+        },
+        {
+          "id": "cutter",
+          "src": "images/works/outil-d-or/cutter.jpg",
+          "alt": "Cutter restauré, manche en chêne et lame en feuille de laiton, posé sur coussin de velours bleu",
+          "title": "Outils d'or, Cutter",
+          "year": "2022",
+          "materials": ["bois de chêne", "feuilles de laiton", "lames de cutter"],
+          "dimensions": "20 × 5 × 3 cm",
+          "exhibition": "DNA, ISBA Besançon, 2022"
+        },
+        {
+          "id": "pied-de-biche",
+          "src": "images/works/outil-d-or/pied-de-biche.jpg",
+          "alt": "Pied-de-biche couvert de feuilles de laiton, posé sur coussin de velours bleu vif",
+          "title": "Outils d'or, Pied de biche",
+          "year": "2022",
+          "materials": ["feuilles de laiton"],
+          "technique": "outil restauré",
+          "dimensions": "60 × 13 × 3 cm",
+          "exhibition": "DNA, ISBA Besançon, 2022"
+        },
+        {
+          "id": "ciseau-bois",
+          "src": "images/works/outil-d-or/sciseau.jpg",
+          "alt": "Ciseau à bois restauré, manche en chêne couvert de feuilles de laiton",
+          "title": "Outils d'or, Ciseau à bois",
+          "year": "2022",
+          "materials": ["bois de chêne", "feuilles de laiton"]
+        },
+        {
+          "id": "marteau",
+          "src": "images/works/outil-d-or/marteau.jpg",
+          "alt": "Marteau ancien restauré, manche couvert de feuilles de laiton",
+          "title": "Outils d'or, Marteau",
+          "year": "2022",
+          "materials": ["bois", "feuilles de laiton"]
+        },
+        {
+          "id": "pioche",
+          "src": "images/works/outil-d-or/pioche.jpeg",
+          "alt": "Pioche ancienne restaurée, manche couvert de feuilles de laiton",
+          "title": "Outils d'or, Pioche",
+          "year": "2022",
+          "materials": ["bois", "feuilles de laiton"]
+        },
+        {
+          "id": "outil-01",
+          "src": "images/works/outil-d-or/outil-01.jpeg",
+          "alt": "Outil restauré couvert de feuilles de laiton",
+          "title": "Outils d'or",
+          "year": "2022"
+        },
+        {
+          "id": "outil-02",
+          "src": "images/works/outil-d-or/outil-02.jpeg",
+          "alt": "Outil restauré couvert de feuilles de laiton",
+          "title": "Outils d'or",
+          "year": "2022"
+        },
+        {
+          "id": "outil-03",
+          "src": "images/works/outil-d-or/outil-03.jpeg",
+          "alt": "Outil restauré couvert de feuilles de laiton",
+          "title": "Outils d'or",
+          "year": "2022"
+        },
+        {
+          "id": "outil-04",
+          "src": "images/works/outil-d-or/outil-04.jpeg",
+          "alt": "Outil restauré couvert de feuilles de laiton",
+          "title": "Outils d'or",
+          "year": "2022"
+        },
+        {
+          "id": "outil-05",
+          "src": "images/works/outil-d-or/outil-05.jpeg",
+          "alt": "Outil restauré couvert de feuilles de laiton",
+          "title": "Outils d'or",
+          "year": "2022"
+        },
+        {
+          "id": "outil-06",
+          "src": "images/works/outil-d-or/outil-06.jpeg",
+          "alt": "Outil restauré couvert de feuilles de laiton",
+          "title": "Outils d'or",
+          "year": "2022"
+        },
+        {
+          "id": "outil-07",
+          "src": "images/works/outil-d-or/outil-07.jpeg",
+          "alt": "Outil restauré couvert de feuilles de laiton",
+          "title": "Outils d'or",
+          "year": "2022"
+        }
+      ]
+    },
+
+    {
+      "id": "peinture-d-oxyde",
+      "title": "Dessin sur métal",
+      "period": "2025",
+      "description": "Plaques d'acier travaillées à l'oxyde. La rouille et les patines deviennent matière picturale : les paysages naissent du processus chimique lui-même, le dessin ne fait que les révéler.",
+      "materials": ["feuille d'acier", "oxyde"],
+      "cover": "images/works/peinture-d-oxyde/paysage-metal.jpg",
+      "works": [
+        {
+          "id": "foret-1",
+          "src": "images/works/peinture-d-oxyde/paysage-metal.jpg",
+          "alt": "Plaque d'acier patinée par oxydation, sous-bois suggéré par des troncs d'arbres clairs, palette ocre et roussie",
+          "title": "Dessin sur métal, Forêt 1",
+          "year": "2025",
+          "materials": ["feuille d'acier", "oxyde"],
+          "dimensions": "20 × 22 cm"
+        },
+        {
+          "id": "foret-2",
+          "src": "images/works/peinture-d-oxyde/paysage-metal-1.jpg",
+          "alt": "Grand panneau d'acier patiné, ambiance brumeuse de paysage",
+          "title": "Dessin sur métal, Forêt 2",
+          "year": "en cours",
+          "materials": ["feuille d'acier", "oxyde"],
+          "dimensions": "100 × 57 cm"
+        },
+        {
+          "id": "oxyde-01",
+          "src": "images/works/peinture-d-oxyde/oxyde-01.jpg",
+          "alt": "Surface de métal patinée par les oxydes",
+          "title": "Dessin sur métal",
+          "year": "2025",
+          "materials": ["feuille d'acier", "oxyde"]
+        },
+        {
+          "id": "oxyde-02",
+          "src": "images/works/peinture-d-oxyde/oxyde-02.jpeg",
+          "alt": "Surface de métal patinée par les oxydes",
+          "title": "Dessin sur métal",
+          "year": "2025",
+          "materials": ["feuille d'acier", "oxyde"]
+        },
+        {
+          "id": "oxyde-03",
+          "src": "images/works/peinture-d-oxyde/oxyde-03.jpeg",
+          "alt": "Surface de métal patinée par les oxydes",
+          "title": "Dessin sur métal",
+          "year": "2025",
+          "materials": ["feuille d'acier", "oxyde"]
+        }
+      ]
+    },
+
+    {
+      "id": "volume-de-toile",
+      "title": "Volumes de toile",
+      "period": "2023",
+      "description": "Recherches volumétriques à partir de toiles tendues, plissées ou suspendues. La toile devient matière sculpturale.",
+      "materials": ["toile"],
+      "cover": "images/works/volume-de-toile/volume-01.jpeg",
+      "works": [
+        {
+          "id": "volume-01",
+          "src": "images/works/volume-de-toile/volume-01.jpeg",
+          "alt": "Volume sculptural en toile, vue de face",
+          "title": "Volume de toile",
+          "year": "2023",
+          "materials": ["toile"]
+        },
+        {
+          "id": "volume-02",
+          "src": "images/works/volume-de-toile/volume-02.jpeg",
+          "alt": "Volume sculptural en toile, vue de profil",
+          "title": "Volume de toile",
+          "year": "2023",
+          "materials": ["toile"]
+        },
+        {
+          "id": "volume-03",
+          "src": "images/works/volume-de-toile/volume-03.jpeg",
+          "alt": "Volume sculptural en toile, vue rapprochée",
+          "title": "Volume de toile",
+          "year": "2023",
+          "materials": ["toile"]
+        },
+        {
+          "id": "volume-04",
+          "src": "images/works/volume-de-toile/volume-04.jpeg",
+          "alt": "Volume sculptural en toile, détail",
+          "title": "Volume de toile",
+          "year": "2023",
+          "materials": ["toile"]
+        },
+        {
+          "id": "volume-05",
+          "src": "images/works/volume-de-toile/volume-05.jpeg",
+          "alt": "Volume sculptural en toile, vue d'ensemble",
+          "title": "Volume de toile",
+          "year": "2023",
+          "materials": ["toile"]
+        },
+        {
+          "id": "volume-06",
+          "src": "images/works/volume-de-toile/volume-06.jpeg",
+          "alt": "Volume sculptural en toile",
+          "title": "Volume de toile",
+          "year": "2023",
+          "materials": ["toile"]
+        },
+        {
+          "id": "volume-07",
+          "src": "images/works/volume-de-toile/volume-07.jpeg",
+          "alt": "Volume sculptural en toile",
+          "title": "Volume de toile",
+          "year": "2023",
+          "materials": ["toile"]
+        },
+        {
+          "id": "volume-08",
+          "src": "images/works/volume-de-toile/volume-08.jpeg",
+          "alt": "Volume sculptural en toile",
+          "title": "Volume de toile",
+          "year": "2023",
+          "materials": ["toile"]
+        }
+      ]
+    },
+
+    {
+      "id": "xsylogravure",
+      "title": "Xylogravure",
+      "period": "2022",
+      "description": "Série de xylogravures sur le motif de la forêt. Acrylique sur papier épais, impression à la main.",
+      "materials": ["acrylique", "papier 150g"],
+      "cover": "images/works/xsylogravure/gravure-1.jpg",
+      "works": [
+        {
+          "id": "foret-1",
+          "src": "images/works/xsylogravure/gravure-1.jpg",
+          "alt": "Xylogravure sur papier représentant une forêt, encre noire sur fond clair",
+          "title": "Xylogravure de forêt 1",
+          "year": "2022",
+          "materials": ["acrylique", "papier 150g"],
+          "technique": "xylogravure",
+          "dimensions": "64 × 90 cm"
+        },
+        {
+          "id": "foret-2",
+          "src": "images/works/xsylogravure/gravure.jpg",
+          "alt": "Xylogravure sur papier représentant une forêt, encre noire sur fond clair",
+          "title": "Xylogravure de forêt 2",
+          "year": "2022",
+          "materials": ["acrylique", "papier 150g"],
+          "technique": "xylogravure",
+          "dimensions": "64 × 90 cm"
+        }
+      ]
+    },
+
+    {
+      "id": "cristeaux-raku",
+      "title": "Cristaux raku",
+      "period": "2023",
+      "description": "Pièces céramiques cuites selon la technique du raku, où les cristallisations et les craquelures naissent du choc thermique.",
+      "materials": ["céramique raku"],
+      "cover": "images/works/cristeaux-raku/cristeaux-1.jpg",
+      "works": [
+        {
+          "id": "cristeaux-1",
+          "src": "images/works/cristeaux-raku/cristeaux-1.jpg",
+          "alt": "Pièce céramique cuite au raku, texture cristalline",
+          "title": "Cristaux raku",
+          "year": "2023",
+          "materials": ["céramique raku"]
+        },
+        {
+          "id": "cristeaux-2",
+          "src": "images/works/cristeaux-raku/cristeaux-2.jpg",
+          "alt": "Pièce céramique cuite au raku, vue de détail",
+          "title": "Cristaux raku",
+          "year": "2023",
+          "materials": ["céramique raku"]
+        },
+        {
+          "id": "cristeaux-3",
+          "src": "images/works/cristeaux-raku/cristeaux-3.jpg",
+          "alt": "Pièce céramique cuite au raku, vue d'ensemble",
+          "title": "Cristaux raku",
+          "year": "2023",
+          "materials": ["céramique raku"]
+        }
+      ]
+    },
+
+    {
+      "id": "collone",
+      "title": "Colonne",
+      "period": "2023",
+      "description": "Pièces verticales explorant la forme de la colonne, entre architecture et sculpture.",
+      "materials": ["bois", "pierre"],
+      "cover": "images/works/collone/collone.jpg",
+      "works": [
+        {
+          "id": "collone",
+          "src": "images/works/collone/collone.jpg",
+          "alt": "Colonne sculptée — vue d'ensemble",
+          "title": "Colonne",
+          "year": "2023"
+        },
+        {
+          "id": "collone-1",
+          "src": "images/works/collone/collone-1.jpg",
+          "alt": "Colonne sculptée — vue rapprochée",
+          "title": "Colonne",
+          "year": "2023"
+        }
+      ]
+    }
+  ]
+}

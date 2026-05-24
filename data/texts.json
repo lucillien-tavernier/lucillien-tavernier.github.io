@@ -1,0 +1,5 @@
+{
+  "_comment": "TEXTES — critiques, essais, présentations écrits sur le travail de Lucillien. Pour ajouter un texte, ajouter un objet dans le tableau 'texts'. Champs : id (slug), title, author (obligatoire), author_role (optionnel : critique d'art, commissaire, etc.), year (obligatoire), source (publication d'origine — catalogue, magazine, site...), excerpt (citation courte affichée dans la liste, ~200 caractères), text (texte complet, paragraphes séparés par double saut de ligne). À ranger du plus récent au plus ancien.",
+
+  "texts": []
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Biographie de Lucillien Tavernier — expositions, résidences, lauréats, festivals.">
+  <title>Biographie — Lucillien Tavernier</title>
+
+  <link rel="stylesheet" href="./css/fonts.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body data-page-id="biographie">
+
+  <a href="#main" class="skip-link">Aller au contenu principal</a>
+
+  <div data-include="nav"></div>
+
+  <main id="main" class="main">
+
+    <section class="section">
+      <h1 class="section__title">Biographie</h1>
+      <!--
+        Le contenu est généré par js/exhibitions.js à partir de
+        data/exhibitions.json. Les items sont regroupés par année,
+        au format CV : grande année à gauche, type/titre/lieu à droite.
+      -->
+      <div id="exhibitions" class="exhibitions">
+        <p class="exhibitions__empty">Chargement…</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div data-include="footer"></div>
+
+  <script src="./js/partials.js"></script>
+  <script src="./js/exhibitions.js"></script>
+</body>
+</html>

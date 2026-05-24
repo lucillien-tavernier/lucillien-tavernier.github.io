@@ -1,35 +1,84 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Lucillien Tavernier</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lucillien Tavernier — artiste plasticien. Sculpture, gravure, céramique. Bois, pierre, métal, terre.">
+  <title>Lucillien Tavernier — artiste plasticien</title>
+
+  <!-- Polices auto-hébergées (Cormorant Garamond + Inter, OFL).
+       Pas de requête vers Google Fonts → respect RGPD. -->
+  <link rel="stylesheet" href="./css/fonts.css">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
-<body class="index">
 
-  <nav class="menu">
-    <ul>
-      <li><a href="#">Accueil</a></li>
-      <li><a href="pages/travail.html">travail</a></li>
-      <li><a href="pages/portfolio.html">portfolio</a></li>
-      <li><a href="pages/expositions.html">expositions</a></li>
-      <li><a href="pages/biographie.html">biographie</a></li>
-      <li><a href="pages/contact.html">contact</a></li>
-    </ul>
-  </nav>
+<!-- data-page-id sert à indiquer à la nav quelle page est active -->
+<body data-page-id="accueil">
 
-  <main>  
-    <section class="diaporama">
-      <img src="travaux/brijunis.jpg" alt="recherche photographique" title="brijunis" width="1000" />
-      <img src="travaux/cailloux.JPG" alt="expérimentation d'inclusion" title="cailloux" width="1000" />
-      <img src="travaux/cailloux3.JPG" alt="expérimentation de copie" title="cailloux3" width="1000" />
-      <img src="travaux/collone1.JPG" alt="collone1" title="collone1" width="1000" />
+  <!-- Skip-link : caché jusqu'à ce qu'un utilisateur clavier le focusse -->
+  <a href="#main" class="skip-link">Aller au contenu principal</a>
+
+  <!-- Emplacement de la nav, sera remplacé par partials/nav.html via js/partials.js -->
+  <div data-include="nav"></div>
+
+  <main id="main" class="main">
+
+    <!--
+      Section "hero" : diaporama d'images en fondu + nom + baseline + CTA.
+      Les images sont déclarées dans l'attribut data-images du slideshow
+      pour que Lucillien puisse les changer facilement sans toucher au JS.
+      Le format est un tableau JSON d'objets {src, alt} (l'alt est utilisé
+      pour les lecteurs d'écran, optionnel pour les images décoratives).
+    -->
+    <section class="hero">
+      <!--
+        Liste d'images du diaporama. Format JSON : tableau d'objets {src, alt}.
+        Pour ajouter / retirer une image, modifier directement ce tableau.
+        Note : les apostrophes dans les alt utilisent ’ (U+2019, apostrophe
+        typographique) plutôt que ' afin de ne pas casser l'attribut HTML.
+      -->
+      <div
+        id="hero-slideshow"
+        class="hero__slideshow"
+        data-images='[
+          {"src": "./images/home/brijunis.jpg",  "alt": "Caprices, Minerais de bois 2 — sculpture installée au sommet du Mont d’Or"},
+          {"src": "./images/works/caprice/caprice-dnsep.jpg",  "alt": "Ensemble des Minerais de bois lors du DNSEP"},
+          {"src": "./images/works/paysage-pierre-de-reve/capture-2025-06.jpg",  "alt": "Caprices, Pierre de rêve 4 — paysage panoramique"},
+          {"src": "./images/works/outil-d-or/couteau-sciseau.jpg",  "alt": "Outils d’or — ciseau et gouge"},
+          {"src": "./images/home/cailloux.jpg",  "alt": "Caprices, Minerais de bois"}
+        ]'>
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__content">
+        <h1 class="hero__title">Lucillien Tavernier</h1>
+        <p class="hero__tagline">
+          Artiste plasticien — sculpture, gravure et céramique.<br>
+          Du bois, de la pierre, du métal, de la terre.
+        </p>
+        <a class="hero__cta" href="./travaux.html">Voir les travaux</a>
+      </div>
     </section>
-  </main> 
 
-  <footer>
-    <p>&copy; 2025 TAVERNIER Lucillien. Tous droits réservés.</p>
-  </footer>
+    <!-- Petit teaser sous la hero pour donner envie d'aller plus loin -->
+    <section class="home-preview">
+      <h2 class="section__title">Une pratique de la matière</h2>
+      <p>
+        Une exploration patiente du bois, de la pierre, du métal et de la terre.
+        Les gestes répétés, le grain qui s'efface, les veines qui apparaissent :
+        chaque pièce est une conversation avec le matériau.
+      </p>
+      <p style="margin-top: 2rem">
+        <a class="hero__cta" href="./demarche.html">Lire la démarche</a>
+      </p>
+    </section>
 
+  </main>
+
+  <!-- Emplacement du footer, sera remplacé par partials/footer.html -->
+  <div data-include="footer"></div>
+
+  <!-- Scripts : partials charge la nav et le footer (à inclure sur toutes les pages) -->
+  <script src="./js/partials.js"></script>
+  <script src="./js/hero-slideshow.js"></script>
 </body>
 </html>

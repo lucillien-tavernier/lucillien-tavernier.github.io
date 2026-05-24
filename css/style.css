@@ -1,0 +1,1333 @@
+/* ============================================================
+   STYLE PRINCIPAL — Site vitrine Lucillien Tavernier
+   ============================================================
+   Organisation du fichier (utilise Ctrl+F pour naviguer) :
+     1.  Variables (couleurs, espacements, typo)
+     2.  Reset / base
+     3.  Accessibilité (skip-link, focus)
+     4.  Layout général (body, main)
+     5.  Navigation
+     6.  Footer
+     7.  Page d'accueil
+     8.  Page Travaux — vue séries (grille de vignettes)
+     9.  Page Travaux — vue détail d'une série
+     10. Lightbox
+     11. Page Démarche
+     12. Page Expositions
+     13. Responsive — adaptations tablette/desktop
+     14. Préférence reduce-motion
+   ============================================================ */
+
+
+/* ============================================================
+   1. VARIABLES
+   ============================================================
+   Les couleurs, polices et espacements sont définis ici comme
+   variables CSS (custom properties). Pour changer la palette
+   du site, il suffit de modifier ces valeurs — tout le reste
+   se mettra à jour automatiquement.
+*/
+:root {
+  /* --- Couleurs (thème sombre) --- */
+  --color-bg:        #111111;  /* fond principal de la page */
+  --color-bg-alt:    #1a1a1a;  /* fond pour les blocs secondaires */
+  --color-bg-card:   #1e1e1e;  /* fond des cartes (vignettes de série) */
+  --color-border:    #2a2a2a;  /* lignes de séparation discrètes */
+  --color-text:      #e8e6e1;  /* texte principal, légèrement chaud (mieux qu'un blanc pur) */
+  --color-text-mute: #a09e98;  /* texte secondaire (légendes, métadonnées) */
+  --color-accent:    #c8a96a;  /* accent doré discret, en lien avec "outils d'or" */
+  --color-accent-hover: #e0c188;
+
+  /* --- Typographie --- */
+  --font-heading: "Cormorant Garamond", "Georgia", serif;
+  --font-body:    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* --- Espacements (échelle harmonique) --- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* --- Largeurs de contenu --- */
+  --max-width-text:  65ch;   /* largeur confortable pour la lecture (~65 caractères) */
+  --max-width-page:  1400px; /* largeur max d'un bloc plein-largeur */
+
+  /* --- Hauteur de la nav (utilisée pour le décalage du contenu) --- */
+  --nav-height: 64px;
+
+  /* --- Transitions --- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+}
+
+
+/* ============================================================
+   2. RESET / BASE
+   ============================================================
+   Petit reset minimaliste pour neutraliser les marges par défaut
+   des navigateurs et harmoniser le rendu.
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Smooth scroll quand on clique sur un lien d'ancre (#contact par ex.) */
+  scroll-behavior: smooth;
+  /* Compense la nav fixe pour que les ancres ne soient pas cachées dessous */
+  scroll-padding-top: calc(var(--nav-height) + var(--space-4));
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  /* Améliore le rendu des polices sur écran */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Évite les sauts horizontaux quand un élément déborde */
+  overflow-x: hidden;
+  /*
+    Anti-flash : on cache le body au démarrage et on l'affiche en fondu
+    une fois que les partials (nav, footer) sont chargés. La classe
+    .is-ready est ajoutée par js/partials.js. Sans cette astuce, on
+    voyait brièvement le contenu sans nav/footer, ce qui faisait un
+    saut désagréable.
+  */
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+body.is-ready {
+  opacity: 1;
+}
+
+/* Fallback si JavaScript est désactivé : on affiche le contenu quand même
+   (le site sera dégradé — pas de nav/footer chargés — mais lisible). */
+.no-js body {
+  opacity: 1;
+}
+
+img {
+  /* Les images sont par défaut block + responsive */
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--color-text);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+h3 { font-size: clamp(1.15rem, 2vw, 1.5rem); }
+
+p {
+  margin: 0 0 var(--space-4);
+}
+
+
+/* ============================================================
+   3. ACCESSIBILITÉ
+   ============================================================ */
+
+/* "Skip link" — caché jusqu'à ce que la touche Tab le fasse apparaître.
+   Permet aux utilisateurs au clavier de sauter directement au contenu
+   principal sans avoir à tabuler à travers toute la nav. */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-4);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  padding: var(--space-3) var(--space-4);
+  z-index: 1000;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: top var(--transition-base);
+}
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* Focus visible : un cadre clair quand un élément reçoit le focus clavier.
+   On utilise :focus-visible plutôt que :focus pour ne pas l'afficher sur
+   les clics souris (moins intrusif visuellement). */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Texte caché visuellement mais lu par les lecteurs d'écran */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ============================================================
+   4. LAYOUT GÉNÉRAL
+   ============================================================ */
+.main {
+  /* On laisse la place pour la nav fixe */
+  padding-top: var(--nav-height);
+  min-height: 100vh;
+}
+
+.section {
+  padding: var(--space-7) var(--space-4);
+  max-width: var(--max-width-page);
+  margin: 0 auto;
+}
+
+.section__title {
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+
+/* ============================================================
+   5. NAVIGATION
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-4);
+  /* Léger fond semi-transparent pour rester lisible sur les images */
+  background-color: rgba(17, 17, 17, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 100;
+}
+
+.nav__brand {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.nav__brand-name {
+  /* Nom de l'artiste — toujours visible */
+}
+
+/* Bouton hamburger pour mobile (caché en desktop, cf. media query plus bas).
+   On utilise position:absolute pour chaque barre afin d'obtenir une croix
+   parfaitement centrée à l'ouverture : les barres 1 et 3 viennent toutes
+   deux à top:50% puis pivotent autour de leur propre centre. */
+.nav__toggle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.nav__toggle-bar {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  height: 2px;
+  background-color: var(--color-text);
+  transform-origin: center;
+  transition: top var(--transition-base),
+              transform var(--transition-base),
+              opacity var(--transition-base);
+}
+.nav__toggle-bar:nth-child(1) { top: 9px; }
+.nav__toggle-bar:nth-child(2) { top: 15px; }   /* exactement centré (32 / 2 - 1) */
+.nav__toggle-bar:nth-child(3) { top: 21px; }
+
+/* État ouvert : les barres 1 et 3 se rejoignent au centre puis pivotent
+   pour former une croix bien centrée. */
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(1) {
+  top: 15px;
+  transform: rotate(45deg);
+}
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.nav__toggle[aria-expanded="true"] .nav__toggle-bar:nth-child(3) {
+  top: 15px;
+  transform: rotate(-45deg);
+}
+
+/* Menu : sur mobile c'est un panneau qui descend, sur desktop une rangée horizontale */
+.nav__menu {
+  /* État par défaut (mobile) : caché */
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-5) 0;
+  gap: var(--space-4);
+  /* Caché par défaut — affiché quand .is-open est ajoutée */
+  display: none;
+}
+.nav__menu.is-open {
+  display: flex;
+}
+.nav__menu li {
+  width: 100%;
+  text-align: center;
+}
+.nav__menu a {
+  display: block;
+  padding: var(--space-2) var(--space-4);
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+}
+
+/* Lien actif (page courante) : souligné en doré */
+.nav__menu a[aria-current="page"] {
+  color: var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
+}
+
+
+/* ============================================================
+   6. FOOTER
+   ============================================================ */
+.footer {
+  background-color: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-7) var(--space-4) var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.footer__inner {
+  max-width: var(--max-width-page);
+  margin: 0 auto;
+}
+
+.footer__title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-mute);
+  margin-bottom: var(--space-5);
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-align: center;
+}
+
+.footer__contact-list {
+  /* Mobile : 1 colonne centrée. Desktop : 2 colonnes auto-largeur
+     centrées (cf. media query plus bas). On utilise grid avec
+     justify-content: center pour avoir un vrai centrage visuel
+     (et non deux colonnes 1fr collées à gauche). */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  justify-items: center;
+}
+
+.footer__contact-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  color: var(--color-text);
+}
+
+.footer__contact-list img {
+  /* On rend les SVG blanchâtres via un filtre — comme ça pas besoin de
+     modifier le fichier source pour qu'ils s'intègrent au thème sombre */
+  filter: invert(95%) sepia(10%) saturate(200%) hue-rotate(330deg) brightness(95%);
+  flex-shrink: 0;
+}
+
+.footer__bottom {
+  max-width: var(--max-width-page);
+  margin: var(--space-6) auto 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  color: var(--color-text-mute);
+  font-size: 0.875rem;
+}
+.footer__bottom p { margin: 0; }
+
+
+/* ============================================================
+   7. PAGE D'ACCUEIL
+   ============================================================ */
+.hero {
+  /* La hero prend toute la hauteur de l'écran moins la nav */
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-6) var(--space-4);
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+}
+
+/* Slideshow : tous les slides empilés en absolu, on fait une transition
+   d'opacité entre eux pour un fondu enchaîné doux. */
+.hero__slideshow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1500ms ease-in-out;
+}
+.hero__slide.is-active {
+  opacity: 1;
+}
+
+.hero__overlay {
+  /* Calque sombre par-dessus le slideshow pour assurer la lisibilité du texte */
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 17, 17, 0.5) 0%,
+    rgba(17, 17, 17, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+.hero__content {
+  position: relative;  /* au-dessus de l'overlay */
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  margin-bottom: var(--space-4);
+  letter-spacing: 0.02em;
+}
+
+.hero__tagline {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--color-text-mute);
+  font-style: italic;
+  max-width: 500px;
+  margin: 0 auto var(--space-6);
+}
+
+.hero__cta {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+.hero__cta:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Bloc "extrait" sous la hero : un teasing du contenu de la page Travaux */
+.home-preview {
+  padding: var(--space-7) var(--space-4);
+  max-width: var(--max-width-page);
+  margin: 0 auto;
+  text-align: center;
+}
+.home-preview p {
+  max-width: var(--max-width-text);
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--color-text-mute);
+}
+
+
+/* ============================================================
+   8. PAGE TRAVAUX — VUE SÉRIES (grille de vignettes)
+   ============================================================
+   Affichée quand on arrive sur la page (sans paramètre d'URL).
+   Chaque carte mène à la vue détail d'une série.
+*/
+.series-grid {
+  display: grid;
+  /* mobile : 1 colonne ; on passe à 2 puis 3 dans les media queries */
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.series-card {
+  position: relative;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform var(--transition-base), border-color var(--transition-base);
+}
+
+.series-card:hover,
+.series-card:focus-within {
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+}
+
+.series-card__image {
+  /* Ratio 4/3 fixe pour homogénéiser la grille même si les photos
+     ont des proportions différentes */
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+  /* Petite anim de zoom au survol */
+  transition: transform 600ms ease;
+}
+.series-card:hover .series-card__image {
+  transform: scale(1.04);
+}
+
+.series-card__body {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+}
+
+.series-card__title {
+  margin-bottom: var(--space-2);
+}
+
+.series-card__meta {
+  color: var(--color-text-mute);
+  font-size: 0.875rem;
+  margin-bottom: var(--space-3);
+}
+
+.series-card__description {
+  font-size: 0.95rem;
+  color: var(--color-text-mute);
+  margin: 0;
+}
+
+/* Le lien occupe toute la carte (clic n'importe où) sans dupliquer le contenu
+   accessible. Astuce : on étend l'aire cliquable du titre via ::after */
+.series-card__link {
+  color: var(--color-text);
+}
+.series-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+
+/* ============================================================
+   9. PAGE TRAVAUX — VUE DÉTAIL D'UNE SÉRIE
+   ============================================================ */
+.series-detail__header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+  max-width: var(--max-width-text);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.series-detail__back {
+  display: inline-block;
+  margin-bottom: var(--space-4);
+  font-size: 0.9rem;
+  color: var(--color-text-mute);
+}
+.series-detail__back::before {
+  content: "← ";
+}
+
+/* Bouton flottant "Retour" : reste accessible en permanence quand on
+   parcourt une longue série. Position fixe en bas à gauche pour ne
+   pas gêner la lecture et rester atteignable au pouce sur mobile. */
+.series-detail__back--floating {
+  position: fixed;
+  bottom: var(--space-5);
+  left: var(--space-5);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  background-color: rgba(30, 30, 30, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-radius: 999px;
+  z-index: 90;
+  transition: background-color var(--transition-fast),
+              border-color var(--transition-fast),
+              transform var(--transition-fast);
+  margin-bottom: 0;
+}
+.series-detail__back--floating::before {
+  content: "←";
+  font-size: 1.1em;
+}
+.series-detail__back--floating:hover,
+.series-detail__back--floating:focus-visible {
+  background-color: var(--color-bg-card);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* Sur mobile, on raccourcit le bouton flottant en icône seule pour
+   éviter qu'il prenne trop de place. */
+@media (max-width: 639px) {
+  .series-detail__back--floating .series-detail__back-text {
+    /* Caché visuellement, mais toujours lu par les lecteurs d'écran */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .series-detail__back--floating {
+    padding: var(--space-3);
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+  }
+}
+
+.series-detail__period {
+  color: var(--color-text-mute);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-4);
+}
+
+.series-detail__description {
+  color: var(--color-text-mute);
+  font-size: 1.05rem;
+}
+
+/* Grille des œuvres d'une série.
+   align-items: center → chaque card prend sa hauteur naturelle, et
+   quand elle est plus petite que la plus grande de sa ligne elle est
+   centrée verticalement dans la ligne (au lieu d'être étirée, ce qui
+   créait des barres grises en bas). */
+.works-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.work {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.work__image-wrapper {
+  /* L'image prend la place dispo, la légende suit dessous */
+  background-color: var(--color-bg);
+  /* Le bouton image ouvre la lightbox */
+  cursor: zoom-in;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  margin: 0;
+  background-clip: border-box;
+}
+
+.work__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity var(--transition-base);
+}
+.work__image-wrapper:hover .work__image {
+  opacity: 0.85;
+}
+
+.work__caption {
+  padding: var(--space-4);
+  font-size: 0.875rem;
+  color: var(--color-text-mute);
+}
+
+.work__title {
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  margin-bottom: var(--space-1);
+}
+
+
+/* ============================================================
+   10. LIGHTBOX
+   ============================================================
+   Modale plein écran activée au clic sur une œuvre.
+*/
+.lightbox {
+  /* On utilise <dialog> natif. Quand il n'est pas ouvert, il est masqué
+     automatiquement par le navigateur. Quand .show() / .showModal() est
+     appelée, ::backdrop est rendu et le dialog s'affiche. */
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: 100vw;
+  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.lightbox::backdrop {
+  /* Niveau de voile de référence — appliqué partout, qu'il y ait
+     un texte long ou non. Le dégradé ::after vient seulement ajouter
+     un voile supplémentaire côté texte (mobile : sous l'image,
+     desktop : à droite de l'image) pour le rendre encore plus sombre
+     là où on lit le texte long. */
+  background-color: rgba(0, 0, 0, 0.92);
+}
+
+.lightbox__inner {
+  /* Layout par défaut (mobile) : tout empilé verticalement, scrollable.
+     justify-content: center → l'image seule est centrée verticalement
+     dans l'écran. Quand il y a un texte long, on bascule en flex-start
+     (cf. .has-text plus bas) pour que tout reste lisible et scrollable.
+     z-index: 1 pour passer au-dessus du voile / dégradé ::after du dialog. */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-7) var(--space-4) var(--space-4);
+  position: relative;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+/* Avec un texte long sous l'image, on aligne en haut pour permettre
+   le scroll naturel vers le bas et garantir l'accessibilité du texte. */
+.lightbox__inner.has-text {
+  justify-content: flex-start;
+}
+
+/*
+  Voile additionnel derrière le contenu de la lightbox.
+  - Sans texte long : aucun voile en plus (le backdrop seul à 0.92 suffit).
+  - Avec texte long : dégradé continu — transparent côté image, opaque
+    côté texte. Le côté image reste donc au niveau backdrop (0.92), et
+    le côté texte devient encore plus opaque (proche de 1) pour une
+    lecture confortable.
+  - Mobile : dégradé vertical (texte sous l'image).
+  - Desktop : dégradé horizontal (texte à droite).
+  Le ::after est ancré sur le <dialog> qui couvre tout le viewport en
+  mode showModal, donc le dégradé reste collé à la zone visible même
+  si on scrolle dans l'inner.
+*/
+.lightbox:has(.lightbox__inner.has-text)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.55) 80%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+}
+@media (min-width: 900px) {
+  .lightbox:has(.lightbox__inner.has-text)::after {
+    background-image: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.55) 80%,
+      rgba(0, 0, 0, 0.75) 100%
+    );
+  }
+}
+
+/* Zone image — prend l'espace dispo, et la légende basique vient juste en dessous */
+.lightbox__media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.lightbox__image {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  /* Zoom : transform appliqué par lightbox.js. transform-origin: center
+     pour que la formule de "zoom vers le curseur" reste juste. */
+  transform-origin: center center;
+  transition: transform 200ms ease;
+  will-change: transform;
+  cursor: zoom-in;
+  user-select: none;
+  -webkit-user-drag: none;
+  /* On gère nous-mêmes les gestes tactiles (pinch + pan) → on coupe
+     les comportements natifs qui pourraient interférer (scroll, etc.). */
+  touch-action: none;
+}
+.lightbox__image.is-zoomed {
+  cursor: grab;
+}
+.lightbox__image.is-panning {
+  cursor: grabbing;
+  /* Pendant le pan, on retire la transition pour que le mouvement
+     suive le doigt/la souris en temps réel sans latence. */
+  transition: none;
+}
+
+.lightbox__caption {
+  margin-top: var(--space-3);
+  max-width: 800px;
+  text-align: center;
+  color: var(--color-text-mute);
+  font-size: 0.95rem;
+}
+
+.lightbox__caption strong {
+  color: var(--color-text);
+  font-weight: 500;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+/* Bloc texte long (facultatif) : s'affiche uniquement si l'œuvre a un
+   champ "text" dans le JSON. Apparait sous l'image en mobile, sur le
+   côté droit en desktop (cf. media query plus bas). Pas de fond ni
+   d'encadré : juste le texte qui respire dans la lightbox. */
+.lightbox__text {
+  max-width: 600px;
+  margin: var(--space-5) auto 0;
+  padding: 0 var(--space-4);
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.lightbox__text p {
+  margin: 0 0 var(--space-3);
+}
+
+/* Quand il y a un texte long, on bascule en split horizontal sur desktop :
+   image à gauche, texte à droite, plus naturel pour une lecture
+   simultanée. La classe .has-text est ajoutée par lightbox.js */
+@media (min-width: 900px) {
+  .lightbox__inner.has-text {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--space-8);
+  }
+  .lightbox__inner.has-text .lightbox__media {
+    flex: 1 1 60%;
+    justify-content: center;
+    max-height: calc(100vh - var(--space-6) * 2);
+  }
+  .lightbox__inner.has-text .lightbox__image {
+    max-height: calc(100vh - 200px);
+  }
+  .lightbox__inner.has-text .lightbox__text {
+    flex: 1 1 40%;
+    max-width: 480px;
+    margin: 0;
+    padding: var(--space-5) var(--space-6);
+    align-self: center;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+}
+
+/*
+  Boutons (close, prev, next) — un style commun.
+  Le z-index élevé garantit qu'ils restent cliquables au-dessus
+  de l'inner (qui a overflow-y: auto et capte sinon les clics).
+  En mobile, les flèches sont positionnées sur l'image elle-même
+  (cf. .lightbox__media{position:relative}) et la croix a un fond
+  bien opaque pour rester lisible quel que soit le fond.
+*/
+.lightbox__btn {
+  position: absolute;
+  /* Très transparents au repos pour ne pas gêner la lecture de l'œuvre.
+     Ils prennent leur opacité pleine au hover/focus. */
+  background: rgba(20, 20, 20, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast),
+              border-color var(--transition-fast),
+              color var(--transition-fast);
+  z-index: 10;
+  /* Pas de tap-highlight bleu sur mobile */
+  -webkit-tap-highlight-color: transparent;
+}
+.lightbox__btn:hover,
+.lightbox__btn:focus-visible {
+  background: rgba(20, 20, 20, 0.85);
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+/* La croix de fermeture : toujours en haut à droite, un poil plus
+   marquée que les flèches pour rester identifiable, mais reste discrète. */
+.lightbox__btn--close {
+  top: var(--space-3);
+  right: var(--space-3);
+  background: rgba(17, 17, 17, 0.45);
+}
+
+/* Flèches prev/next : par défaut (mobile) positionnées sur l'image
+   elle-même (cf. .lightbox__media position:relative). Sur desktop on
+   les remet sur les côtés du dialog pour bénéficier de toute la largeur. */
+.lightbox__btn--prev,
+.lightbox__btn--next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lightbox__btn--prev { left: var(--space-2); }
+.lightbox__btn--next { right: var(--space-2); }
+
+/* La zone média est le repère de position pour les flèches en mobile :
+   elles flottent au-dessus de l'image, restent sur l'image quand on
+   scrolle, et ne flottent pas dans le vide à côté du texte long. */
+.lightbox__media {
+  position: relative;
+}
+
+/* Desktop : les flèches reviennent sur les bords du viewport pour être
+   plus accessibles à la souris, et on les sort de .lightbox__media. */
+@media (min-width: 900px) {
+  .lightbox .lightbox__btn--prev {
+    position: fixed;
+    left: var(--space-4);
+  }
+  .lightbox .lightbox__btn--next {
+    position: fixed;
+    right: var(--space-4);
+  }
+  .lightbox .lightbox__btn--close {
+    position: fixed;
+    top: var(--space-4);
+    right: var(--space-4);
+  }
+}
+
+
+/* ============================================================
+   11. PAGE DÉMARCHE
+   ============================================================ */
+.demarche {
+  max-width: var(--max-width-text);
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-4);
+}
+
+.demarche h1 {
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.demarche p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: var(--space-5);
+  /* Pour préserver les retours à la ligne du texte original */
+  white-space: pre-line;
+}
+
+.demarche__signature {
+  margin-top: var(--space-7);
+  text-align: center;
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+/* Bandeau d'identité en haut de la page Démarche */
+.identite {
+  text-align: center;
+  margin-bottom: var(--space-6);
+  color: var(--color-text-mute);
+  font-style: italic;
+}
+
+
+/* ============================================================
+   12. PAGE BIOGRAPHIE
+   ============================================================
+   Style CV minimaliste : pas d'encadrés, juste une fine ligne
+   dorée comme séparateur entre les années. L'année est rendue en
+   gros chiffre doré à gauche, les items à droite. En mobile, tout
+   est empilé verticalement.
+*/
+.exhibitions {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.exhibitions__empty {
+  text-align: center;
+  color: var(--color-text-mute);
+  padding: var(--space-7) var(--space-4);
+  font-style: italic;
+}
+
+/* Groupe par année — séparé du précédent par une fine ligne dorée */
+.exh-year {
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--color-accent);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+.exh-year:first-child {
+  border-top: none;
+  padding-top: var(--space-3);
+}
+
+/* L'année — en gros, en accent doré, alignée à gauche */
+.exh-year__year {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  color: var(--color-accent);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.exh-year__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Une entrée (expo / résidence / programme) */
+.exh-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.exh-item__title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* Le type ("Exposition", "Lauréat"…) est inline avec le titre,
+   séparé par un tiret cadratin. On le rend en gris et un peu plus
+   petit pour qu'il agisse comme une glose discrète sans casser
+   l'élan visuel du titre. */
+.exh-item__type {
+  color: var(--color-text-mute);
+  font-size: 0.7em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.exh-item__url {
+  font-size: 0.85em;
+  color: var(--color-accent);
+  text-decoration: none;
+  margin-left: var(--space-2);
+}
+.exh-item__url:hover {
+  color: var(--color-accent-hover);
+}
+
+.exh-item__location {
+  color: var(--color-text-mute);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.exh-item__description {
+  color: var(--color-text-mute);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: var(--space-1) 0 0;
+}
+
+/* Desktop : 2 colonnes — année à gauche, items à droite */
+@media (min-width: 720px) {
+  .exh-year {
+    grid-template-columns: 160px 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+}
+
+
+/* ============================================================
+   12bis. PAGE TEXTES
+   ============================================================
+   Inspirée des sites d'artistes minimalistes : une liste sobre,
+   où chaque texte est un bloc avec titre, auteur/date, extrait
+   et lien "Lire". Cliquer ouvre la vue détail (?texte=<id>).
+*/
+.texts {
+  max-width: var(--max-width-text);
+  margin: 0 auto;
+}
+
+.text-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-card {
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--color-border);
+}
+.text-card:first-child {
+  border-top: none;
+}
+
+.text-card__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 0 0 var(--space-3);
+  font-weight: 500;
+}
+.text-card__link {
+  color: var(--color-text);
+}
+.text-card__link:hover {
+  color: var(--color-accent);
+}
+
+.text-card__meta {
+  color: var(--color-text-mute);
+  font-size: 0.9rem;
+  margin: 0 0 var(--space-3);
+}
+.text-card__role {
+  font-style: italic;
+}
+
+.text-card__excerpt {
+  font-style: italic;
+  color: var(--color-text-mute);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 var(--space-4);
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-border);
+}
+
+.text-card__readmore {
+  display: inline-block;
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+}
+
+/* Vue détail d'un texte */
+.text-detail {
+  max-width: var(--max-width-text);
+  margin: 0 auto;
+}
+.text-detail__back {
+  display: inline-block;
+  margin-bottom: var(--space-5);
+  color: var(--color-text-mute);
+  font-size: 0.9rem;
+}
+.text-detail h1 {
+  margin-bottom: var(--space-3);
+}
+.text-detail__meta {
+  color: var(--color-text-mute);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+.text-detail__body p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: var(--space-4);
+}
+
+
+/* ============================================================
+   13. RESPONSIVE — adaptations tablette/desktop
+   ============================================================
+   On est en mobile-first : tout ce qui précède concerne d'abord
+   l'affichage mobile, on adapte ici pour les écrans plus grands.
+*/
+
+/* Tablette à partir de 640px */
+@media (min-width: 640px) {
+  .series-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .works-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  .footer__contact-list {
+    /* Desktop : 2 colonnes auto, centrées globalement (les colonnes
+       prennent la largeur de leur contenu, et l'ensemble est centré
+       horizontalement). Donne un footer mieux équilibré. */
+    grid-template-columns: auto auto;
+    justify-content: center;
+    justify-items: start;
+    gap: var(--space-3) var(--space-8);
+  }
+}
+
+/* Desktop à partir de 900px : on déploie la nav horizontale */
+@media (min-width: 900px) {
+  :root {
+    --nav-height: 72px;
+  }
+
+  .nav {
+    padding: 0 var(--space-6);
+  }
+
+  .nav__toggle {
+    /* En desktop le hamburger disparaît */
+    display: none;
+  }
+
+  .nav__menu {
+    /* Le menu redevient une rangée horizontale toujours visible */
+    position: static;
+    display: flex;
+    flex-direction: row;
+    background: transparent;
+    border: none;
+    padding: 0;
+    gap: var(--space-5);
+    width: auto;
+  }
+
+  .nav__menu li {
+    width: auto;
+  }
+
+  .nav__menu a {
+    padding: var(--space-2);
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: var(--space-8) var(--space-6);
+  }
+
+  .series-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .works-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Grand écran à partir de 1200px */
+@media (min-width: 1200px) {
+  .section {
+    padding: var(--space-9) var(--space-6);
+  }
+}
+
+
+/* ============================================================
+   14. PRÉFÉRENCE REDUCE-MOTION
+   ============================================================
+   Pour les utilisateurs qui ont activé "réduire les animations"
+   dans leur système (sensibilité visuelle, accessibilité), on
+   désactive toutes les transitions et animations non essentielles.
+*/
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Textes critiques, essais et présentations écrits sur le travail de Lucillien Tavernier.">
+  <title>Textes — Lucillien Tavernier</title>
+
+  <link rel="stylesheet" href="./css/fonts.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body data-page-id="textes">
+
+  <a href="#main" class="skip-link">Aller au contenu principal</a>
+
+  <div data-include="nav"></div>
+
+  <main id="main" class="main">
+
+    <section class="section">
+      <h1 class="section__title">Textes</h1>
+      <!--
+        Le contenu est généré par js/texts.js à partir de data/texts.json.
+        Sans paramètre ?texte=, on affiche la liste. Avec ?texte=<id>,
+        on affiche le texte complet.
+      -->
+      <div id="texts" class="texts">
+        <p class="exhibitions__empty">Chargement…</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div data-include="footer"></div>
+
+  <script src="./js/partials.js"></script>
+  <script src="./js/texts.js"></script>
+</body>
+</html>

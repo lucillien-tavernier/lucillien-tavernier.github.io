@@ -1,0 +1,33 @@
+<!--
+  NAVIGATION PRINCIPALE
+  ---------------------
+  Ce fichier est chargé par js/partials.js sur toutes les pages.
+  Pour ajouter ou retirer un lien dans le menu, modifie uniquement ce fichier :
+  la modification sera répercutée automatiquement sur toutes les pages.
+
+  L'attribut data-nav-id sur chaque lien sert à marquer le lien "actif" (celui
+  de la page en cours), ce marquage est fait par partials.js en fonction de
+  l'attribut data-page-id placé sur la balise <body> de chaque page.
+-->
+<nav class="nav" aria-label="Navigation principale">
+  <a class="nav__brand" href="./index.html" aria-label="Accueil — Lucillien Tavernier">
+    <span class="nav__brand-name">Lucillien Tavernier</span>
+  </a>
+
+  <button class="nav__toggle" type="button"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+          aria-label="Ouvrir le menu">
+    <span class="nav__toggle-bar" aria-hidden="true"></span>
+    <span class="nav__toggle-bar" aria-hidden="true"></span>
+    <span class="nav__toggle-bar" aria-hidden="true"></span>
+  </button>
+
+  <ul class="nav__menu" id="nav-menu">
+    <li><a href="./index.html"       data-nav-id="Accueil">Accueil</a></li>
+    <li><a href="./travaux.html"     data-nav-id="travaux">Travaux</a></li>
+    <li><a href="./demarche.html"    data-nav-id="demarche">Démarche</a></li>
+    <li><a href="./biographie.html"  data-nav-id="biographie">Biographie</a></li>
+    <li><a href="./textes.html"      data-nav-id="textes">Textes</a></li>
+  </ul>
+</nav>
